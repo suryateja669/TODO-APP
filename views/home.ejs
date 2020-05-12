@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>
+            <%= title %>
+        </title>
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+
+    <body>
+        <div id="toDoApp">
+                    <%=title%>
+<!-- creating a input form for user to submit -->
+                <form id="createCard" action="/create-card" method="GET">
+                    <hr>
+                    <div class="Description">
+                        <label for="describe">Description:</label>
+                        <input id="describe" type="text" name="description" placeholder="Describe about the task">
+                    </div>
+                    <hr>
+                    <div class="category">
+                        <label for="category">
+                            Category:
+                        </label>
+                        <select name="category" id="category">
+                            <option value="Work">Work</option>
+                            <option value="Personal">Personal</option>
+                            <option value="School">School</option>
+                            <option value="Study">Study</option>
+                        </select>
+                    </div>
+                    <hr>
+
+                    <div class="dueDate">
+                        <label for="dueDate">
+                            dueDate:
+                        </label>
+                        <input type="date" id="dueDate" name="dueDate">
+                    </div> 
+                    <hr>
+                    <button id="addTask" type="submit">ADD TASK</button>
+                </form>
+      <!-- list of cards to be displayed from the database       -->
+                <div class="cardList">
+                    <ul>
+                        <%for(let i of card_list){%>
+                <!-- Individual card in the cards list -->
+                            <div class="card">
+                                    <li>
+                                        <p id="<%=i.category%>"><%=i.category%></p>
+                                        <p><%=i.description%></p>
+                                        <p><%=i.dueDate%></p> 
+                                    </li>
+                                    <a id="deleteTask" href="/delete-card/?id=<%=i.id %>">Delete Task</a>    
+                            </div>
+                            <hr>
+                        <%}%>
+                    </ul>
+                </div>
+            </div>
+            
+    <script type="text/javascript" src="/js/home.js"></script>
+    </body>
+</html>
